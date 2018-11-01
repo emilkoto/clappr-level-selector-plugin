@@ -1,10 +1,7 @@
-<button data-level-selector-button>
+<button id="buttonSelector" data-level-selector-button>
   Auto
 </button>
-<ul>
-  <% if (title) { %>
-  <li data-title><%= title %></li>
-  <% }; %>
+<ul id="parSelector">
   <li><a href="#" data-level-selector-select="-1">AUTO</a></li>
   <% for (var i = 0; i < levels.length; i++) { %>
     <li><a href="#" data-level-selector-select="<%= levels[i].id %>"><%= levels[i].label %></a></li>
