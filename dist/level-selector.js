@@ -75,9 +75,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-<<<<<<< HEAD
-/***/ (function(module, exports, __webpack_require__) {
-=======
 /***/ (function(module, exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -86,27 +83,26 @@ var global = module.exports = typeof window != 'undefined' && window.Math == Mat
   // eslint-disable-next-line no-new-func
   : Function('return this')();
 if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
->>>>>>> 2dff9def562d2e80d3db6bac44f632ffb3c22383
 
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-<<<<<<< HEAD
-	'use strict';Object.defineProperty(exports,'__esModule',{value:true});var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if('value' in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(_x2,_x3,_x4){var _again=true;_function: while(_again) {var object=_x2,property=_x3,receiver=_x4;_again = false;if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {_x2 = parent;_x3 = property;_x4 = receiver;_again = true;desc = parent = undefined;continue _function;}}else if('value' in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}}};function _interopRequireDefault(obj){return obj && obj.__esModule?obj:{'default':obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError('Cannot call a class as a function');}}function _inherits(subClass,superClass){if(typeof superClass !== 'function' && superClass !== null){throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}var _Clappr=__webpack_require__(2);var _publicLevelSelectorHtml=__webpack_require__(3);var _publicLevelSelectorHtml2=_interopRequireDefault(_publicLevelSelectorHtml);var _publicStyleScss=__webpack_require__(4);var _publicStyleScss2=_interopRequireDefault(_publicStyleScss);var AUTO=-1;var LevelSelector=(function(_UICorePlugin){_inherits(LevelSelector,_UICorePlugin);function LevelSelector(){_classCallCheck(this,LevelSelector);_get(Object.getPrototypeOf(LevelSelector.prototype),'constructor',this).apply(this,arguments);}_createClass(LevelSelector,[{key:'bindEvents',value:function bindEvents(){this.listenTo(this.core,_Clappr.Events.CORE_READY,this.bindPlaybackEvents);this.listenTo(this.core.mediaControl,_Clappr.Events.MEDIACONTROL_CONTAINERCHANGED,this.reload);this.listenTo(this.core.mediaControl,_Clappr.Events.MEDIACONTROL_RENDERED,this.render);this.listenTo(this.core.mediaControl,_Clappr.Events.MEDIACONTROL_HIDE,this.hideSelectLevelMenu);}},{key:'unBindEvents',value:function unBindEvents(){this.stopListening(this.core,_Clappr.Events.CORE_READY);this.stopListening(this.core.mediaControl,_Clappr.Events.MEDIACONTROL_CONTAINERCHANGED);this.stopListening(this.core.mediaControl,_Clappr.Events.MEDIACONTROL_RENDERED);this.stopListening(this.core.mediaControl,_Clappr.Events.MEDIACONTROL_HIDE);this.stopListening(this.core.getCurrentPlayback(),_Clappr.Events.PLAYBACK_LEVELS_AVAILABLE);this.stopListening(this.core.getCurrentPlayback(),_Clappr.Events.PLAYBACK_LEVEL_SWITCH_START);this.stopListening(this.core.getCurrentPlayback(),_Clappr.Events.PLAYBACK_LEVEL_SWITCH_END);this.stopListening(this.core.getCurrentPlayback(),_Clappr.Events.PLAYBACK_BITRATE);}},{key:'bindPlaybackEvents',value:function bindPlaybackEvents(){var currentPlayback=this.core.getCurrentPlayback();this.listenTo(currentPlayback,_Clappr.Events.PLAYBACK_LEVELS_AVAILABLE,this.fillLevels);this.listenTo(currentPlayback,_Clappr.Events.PLAYBACK_LEVEL_SWITCH_START,this.startLevelSwitch);this.listenTo(currentPlayback,_Clappr.Events.PLAYBACK_LEVEL_SWITCH_END,this.stopLevelSwitch);this.listenTo(currentPlayback,_Clappr.Events.PLAYBACK_BITRATE,this.updateCurrentLevel);var playbackLevelsAvaialbeWasTriggered=currentPlayback.levels && currentPlayback.levels.length > 0;playbackLevelsAvaialbeWasTriggered && this.fillLevels(currentPlayback.levels);}},{key:'reload',value:function reload(){this.unBindEvents();this.bindEvents();this.bindPlaybackEvents();}},{key:'shouldRender',value:function shouldRender(){if(!this.core.getCurrentContainer())return false;var currentPlayback=this.core.getCurrentPlayback();if(!currentPlayback)return false;var respondsToCurrentLevel=currentPlayback.currentLevel !== undefined; // Only care if we have at least 2 to choose from
-	var hasLevels=!!(this.levels && this.levels.length > 1);return respondsToCurrentLevel && hasLevels;}},{key:'render',value:function render(){var _this=this;if(this.shouldRender()){$('.level_selector').hover(function(){_this.$('.level_selector ul').show();});var style=_Clappr.Styler.getStyleFor(_publicStyleScss2['default'],{baseUrl:this.core.options.baseUrl});this.$el.html(this.template({'levels':this.levels,'title':this.getTitle()}));this.$el.append(style);this.core.mediaControl.$('.media-control-right-panel').append(this.el);this.highlightCurrentLevel();}return this;}},{key:'fillLevels',value:function fillLevels(levels){var initialLevel=arguments.length <= 1 || arguments[1] === undefined?AUTO:arguments[1];if(this.selectedLevelId === undefined)this.selectedLevelId = initialLevel;this.levels = levels;this.configureLevelsLabels();this.render();}},{key:'configureLevelsLabels',value:function configureLevelsLabels(){if(this.core.options.levelSelectorConfig === undefined)return;var labelCallback=this.core.options.levelSelectorConfig.labelCallback;if(labelCallback && typeof labelCallback !== 'function'){throw new TypeError('labelCallback must be a function');}var hasLabels=this.core.options.levelSelectorConfig.labels;var labels=hasLabels?this.core.options.levelSelectorConfig.labels:{};if(labelCallback || hasLabels){var level;var label;for(var levelId in this.levels) {level = this.levels[levelId];label = labels[level.id];if(labelCallback){level.label = labelCallback(level,label);}else if(label){level.label = label;}}}}},{key:'findLevelBy',value:function findLevelBy(id){var foundLevel;this.levels.forEach(function(level){if(level.id === id){foundLevel = level;}});return foundLevel;}},{key:'onLevelSelect',value:function onLevelSelect(event){this.selectedLevelId = parseInt(event.target.dataset.levelSelectorSelect,10);if(this.core.getCurrentPlayback().currentLevel == this.selectedLevelId)return false;this.core.getCurrentPlayback().currentLevel = this.selectedLevelId;this.toggleContextMenu();event.stopPropagation();return false;}},{key:'onShowLevelSelectMenu',value:function onShowLevelSelectMenu(event){this.toggleContextMenu();}},{key:'hideSelectLevelMenu',value:function hideSelectLevelMenu(){this.$('.level_selector ul').hide();}},{key:'toggleContextMenu',value:function toggleContextMenu(){this.$('.level_selector ul').toggle();}},{key:'buttonElement',value:function buttonElement(){return this.$('.level_selector button');}},{key:'levelElement',value:function levelElement(id){return this.$('.level_selector ul a' + (!isNaN(id)?'[data-level-selector-select="' + id + '"]':'')).parent();}},{key:'getTitle',value:function getTitle(){return (this.core.options.levelSelectorConfig || {}).title;}},{key:'startLevelSwitch',value:function startLevelSwitch(){this.buttonElement().addClass('changing');}},{key:'stopLevelSwitch',value:function stopLevelSwitch(){this.buttonElement().removeClass('changing');}},{key:'updateText',value:function updateText(level){if(level === AUTO){this.buttonElement().text(this.currentLevel?'AUTO (' + this.currentLevel.label + ')':'AUTO');}else {this.buttonElement().text(this.findLevelBy(level).label);}}},{key:'updateCurrentLevel',value:function updateCurrentLevel(info){var level=this.findLevelBy(info.level);this.currentLevel = level?level:null;this.highlightCurrentLevel();}},{key:'highlightCurrentLevel',value:function highlightCurrentLevel(){this.levelElement().removeClass('current');this.currentLevel && this.levelElement(this.currentLevel.id).addClass('current');this.updateText(this.selectedLevelId);}},{key:'name',get:function get(){return 'level_selector';}},{key:'template',get:function get(){return (0,_Clappr.template)(_publicLevelSelectorHtml2['default']);}},{key:'attributes',get:function get(){return {'class':this.name,'data-level-selector':''};}},{key:'events',get:function get(){return {'click [data-level-selector-select]':'onLevelSelect','click [data-level-selector-button]':'onShowLevelSelectMenu'};}}],[{key:'version',get:function get(){return VERSION;}}]);return LevelSelector;})(_Clappr.UICorePlugin);exports['default'] = LevelSelector;module.exports = exports['default'];
+var core = module.exports = { version: '2.5.7' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-=======
+/***/ (function(module, exports, __webpack_require__) {
+
 var anObject = __webpack_require__(10);
 var IE8_DOM_DEFINE = __webpack_require__(29);
-var toPrimitive = __webpack_require__(14);
+var toPrimitive = __webpack_require__(15);
 var dP = Object.defineProperty;
 
-exports.f = __webpack_require__(2) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+exports.f = __webpack_require__(3) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
@@ -120,27 +116,18 @@ exports.f = __webpack_require__(2) ? Object.defineProperty : function defineProp
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Thank's IE8 for his funny defineProperty
 module.exports = !__webpack_require__(11)(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
->>>>>>> 2dff9def562d2e80d3db6bac44f632ffb3c22383
 
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-<<<<<<< HEAD
-
-	module.exports = "<button id=\"buttonSelector\" data-level-selector-button>\n  Auto\n</button>\n<ul id=\"parSelector\">\n  <li><a href=\"#\" data-level-selector-select=\"-1\">AUTO</a></li>\n  <% for (var i = 0; i < levels.length; i++) { %>\n    <li><a href=\"#\" data-level-selector-select=\"<%= levels[i].id %>\"><%= levels[i].label %></a></li>\n  <% }; %>\n</ul>\n";
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-=======
+/***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
 module.exports = function (it, key) {
@@ -149,26 +136,12 @@ module.exports = function (it, key) {
 
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
->>>>>>> 2dff9def562d2e80d3db6bac44f632ffb3c22383
-
-var core = module.exports = { version: '2.5.5' };
-if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
-
-
-<<<<<<< HEAD
-	// module
-	exports.push([module.id, ".level_selector[data-level-selector] {\n  float: right;\n  margin-top: 5px;\n  position: relative; }\n  .level_selector[data-level-selector] button {\n    background-color: transparent;\n    color: #fff;\n    font-family: Roboto,\"Open Sans\",Arial,sans-serif;\n    -webkit-font-smoothing: antialiased;\n    border: none;\n    font-size: 12px;\n    font-weight: bold;\n    width: 110px;\n    cursor: pointer; }\n    .level_selector[data-level-selector] button:hover {\n      color: #c9c9c9; }\n    .level_selector[data-level-selector] button:focus {\n      outline: none; }\n    .level_selector[data-level-selector] button.changing {\n      -webkit-animation: pulse 0.5s infinite alternate; }\n  .level_selector[data-level-selector] > ul {\n    display: none;\n    list-style-type: none;\n    position: absolute;\n    bottom: 25px;\n    border: 1px solid black;\n    border-radius: 4px;\n    background-color: rgba(0, 0, 0, 0.7);\n    width: 110px; }\n  .level_selector[data-level-selector] li {\n    position: relative;\n    font-size: 12px; }\n    .level_selector[data-level-selector] li[data-title] {\n      padding: 5px; }\n    .level_selector[data-level-selector] li a {\n      color: #aaa;\n      padding: 5px 10px 5px 15px;\n      display: block;\n      text-decoration: none; }\n      .level_selector[data-level-selector] li a:hover {\n        color: #fff;\n        text-decoration: none; }\n    .level_selector[data-level-selector] li.current a {\n      background-color: black;\n      font-weight: bold;\n      color: #fff; }\n      .level_selector[data-level-selector] li.current a:before {\n        content: '\\2713';\n        position: absolute;\n        top: 2px;\n        left: 4px; }\n\n.media-control[data-media-control] .media-control-layer[data-controls] button.media-control-button[data-hd-indicator].enabled {\n  display: none !important; }\n\n@-webkit-keyframes pulse {\n  0% {\n    color: #fff; }\n  50% {\n    color: #ff0101; }\n  100% {\n    color: #B80000; } }\n", ""]);
-=======
-/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
->>>>>>> 2dff9def562d2e80d3db6bac44f632ffb3c22383
 
-var dP = __webpack_require__(1);
+var dP = __webpack_require__(2);
 var createDesc = __webpack_require__(12);
-module.exports = __webpack_require__(2) ? function (object, key, value) {
+module.exports = __webpack_require__(3) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
   object[key] = value;
@@ -177,25 +150,6 @@ module.exports = __webpack_require__(2) ? function (object, key, value) {
 
 
 /***/ }),
-<<<<<<< HEAD
-/* 5 */
-/***/ (function(module, exports) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/ // css base code, injected by the css-loader
-	"use strict";module.exports = function(){var list=[]; // return the list of modules as css string
-	list.toString = function toString(){var result=[];for(var i=0;i < this.length;i++) {var item=this[i];if(item[2]){result.push("@media " + item[2] + "{" + item[1] + "}");}else {result.push(item[1]);}}return result.join("");}; // import a list of modules into the list
-	list.i = function(modules,mediaQuery){if(typeof modules === "string")modules = [[null,modules,""]];var alreadyImportedModules={};for(var i=0;i < this.length;i++) {var id=this[i][0];if(typeof id === "number")alreadyImportedModules[id] = true;}for(i = 0;i < modules.length;i++) {var item=modules[i]; // skip already imported module
-	// this implementation is not 100% perfect for weird media query combinations
-	//  when a module is imported multiple times with different media queries.
-	//  I hope this will never occur (Hey this way we have smaller bundles)
-	if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]){if(mediaQuery && !item[2]){item[2] = mediaQuery;}else if(mediaQuery){item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";}list.push(item);}}};return list;};
-
-/***/ })
-/******/ ])
-=======
 /* 6 */
 /***/ (function(module, exports) {
 
@@ -210,7 +164,7 @@ module.exports = function (it) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 var IObject = __webpack_require__(54);
-var defined = __webpack_require__(16);
+var defined = __webpack_require__(17);
 module.exports = function (it) {
   return IObject(defined(it));
 };
@@ -221,7 +175,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(22)('wks');
-var uid = __webpack_require__(13);
+var uid = __webpack_require__(14);
 var Symbol = __webpack_require__(0).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -238,10 +192,10 @@ $exports.store = store;
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(0);
-var core = __webpack_require__(4);
+var core = __webpack_require__(1);
 var ctx = __webpack_require__(28);
 var hide = __webpack_require__(5);
-var has = __webpack_require__(3);
+var has = __webpack_require__(4);
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -343,6 +297,13 @@ module.exports = function (bitmap, value) {
 /* 13 */
 /***/ (function(module, exports) {
 
+module.exports = true;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
 var id = 0;
 var px = Math.random();
 module.exports = function (key) {
@@ -351,7 +312,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
@@ -369,7 +330,7 @@ module.exports = function (it, S) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 // 7.1.4 ToInteger
@@ -381,7 +342,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -389,13 +350,6 @@ module.exports = function (it) {
   if (it == undefined) throw TypeError("Can't call method on  " + it);
   return it;
 };
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-module.exports = true;
 
 
 /***/ }),
@@ -470,7 +424,7 @@ module.exports = Object.keys || function keys(O) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(22)('keys');
-var uid = __webpack_require__(13);
+var uid = __webpack_require__(14);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -480,12 +434,18 @@ module.exports = function (key) {
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var core = __webpack_require__(1);
 var global = __webpack_require__(0);
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
-module.exports = function (key) {
-  return store[key] || (store[key] = {});
-};
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: core.version,
+  mode: __webpack_require__(13) ? 'pure' : 'global',
+  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+});
 
 
 /***/ }),
@@ -502,8 +462,8 @@ module.exports = (
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var def = __webpack_require__(1).f;
-var has = __webpack_require__(3);
+var def = __webpack_require__(2).f;
+var has = __webpack_require__(4);
 var TAG = __webpack_require__(8)('toStringTag');
 
 module.exports = function (it, tag, stat) {
@@ -523,10 +483,10 @@ exports.f = __webpack_require__(8);
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(0);
-var core = __webpack_require__(4);
-var LIBRARY = __webpack_require__(17);
+var core = __webpack_require__(1);
+var LIBRARY = __webpack_require__(13);
 var wksExt = __webpack_require__(25);
-var defineProperty = __webpack_require__(1).f;
+var defineProperty = __webpack_require__(2).f;
 module.exports = function (name) {
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
@@ -570,9 +530,8 @@ module.exports = function (fn, that, length) {
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(2) && !__webpack_require__(11)(function () {
+module.exports = !__webpack_require__(3) && !__webpack_require__(11)(function () {
   return Object.defineProperty(__webpack_require__(30)('div'), 'a', { get: function () { return 7; } }).a != 7;
->>>>>>> 2dff9def562d2e80d3db6bac44f632ffb3c22383
 });
 
 
@@ -622,7 +581,7 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 
 "use strict";
 
-var LIBRARY = __webpack_require__(17);
+var LIBRARY = __webpack_require__(13);
 var $export = __webpack_require__(9);
 var redefine = __webpack_require__(33);
 var hide = __webpack_require__(5);
@@ -703,7 +662,7 @@ module.exports = __webpack_require__(5);
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has = __webpack_require__(3);
+var has = __webpack_require__(4);
 var toIObject = __webpack_require__(7);
 var arrayIndexOf = __webpack_require__(55)(false);
 var IE_PROTO = __webpack_require__(21)('IE_PROTO');
@@ -760,12 +719,12 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 var pIE = __webpack_require__(27);
 var createDesc = __webpack_require__(12);
 var toIObject = __webpack_require__(7);
-var toPrimitive = __webpack_require__(14);
-var has = __webpack_require__(3);
+var toPrimitive = __webpack_require__(15);
+var has = __webpack_require__(4);
 var IE8_DOM_DEFINE = __webpack_require__(29);
 var gOPD = Object.getOwnPropertyDescriptor;
 
-exports.f = __webpack_require__(2) ? gOPD : function getOwnPropertyDescriptor(O, P) {
+exports.f = __webpack_require__(3) ? gOPD : function getOwnPropertyDescriptor(O, P) {
   O = toIObject(O);
   P = toPrimitive(P, true);
   if (IE8_DOM_DEFINE) try {
@@ -788,7 +747,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _main=__webpack_req
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _classCallCheck2=__webpack_require__(41);var _classCallCheck3=_interopRequireDefault(_classCallCheck2);var _createClass2=__webpack_require__(42);var _createClass3=_interopRequireDefault(_createClass2);var _possibleConstructorReturn2=__webpack_require__(47);var _possibleConstructorReturn3=_interopRequireDefault(_possibleConstructorReturn2);var _inherits2=__webpack_require__(75);var _inherits3=_interopRequireDefault(_inherits2);var _clappr=__webpack_require__(83);var _levelSelector=__webpack_require__(84);var _levelSelector2=_interopRequireDefault(_levelSelector);var _style=__webpack_require__(85);var _style2=_interopRequireDefault(_style);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var AUTO=-1;var LevelSelector=function(_UICorePlugin){(0,_inherits3.default)(LevelSelector,_UICorePlugin);function LevelSelector(){(0,_classCallCheck3.default)(this,LevelSelector);return(0,_possibleConstructorReturn3.default)(this,_UICorePlugin.apply(this,arguments));}LevelSelector.prototype.bindEvents=function bindEvents(){this.listenTo(this.core,_clappr.Events.CORE_READY,this.bindPlaybackEvents);this.listenTo(this.core.mediaControl,_clappr.Events.MEDIACONTROL_CONTAINERCHANGED,this.reload);this.listenTo(this.core.mediaControl,_clappr.Events.MEDIACONTROL_RENDERED,this.render);this.listenTo(this.core.mediaControl,_clappr.Events.MEDIACONTROL_HIDE,this.hideSelectLevelMenu);};LevelSelector.prototype.unBindEvents=function unBindEvents(){this.stopListening(this.core,_clappr.Events.CORE_READY);this.stopListening(this.core.mediaControl,_clappr.Events.MEDIACONTROL_CONTAINERCHANGED);this.stopListening(this.core.mediaControl,_clappr.Events.MEDIACONTROL_RENDERED);this.stopListening(this.core.mediaControl,_clappr.Events.MEDIACONTROL_HIDE);this.stopListening(this.core.getCurrentPlayback(),_clappr.Events.PLAYBACK_LEVELS_AVAILABLE);this.stopListening(this.core.getCurrentPlayback(),_clappr.Events.PLAYBACK_LEVEL_SWITCH_START);this.stopListening(this.core.getCurrentPlayback(),_clappr.Events.PLAYBACK_LEVEL_SWITCH_END);this.stopListening(this.core.getCurrentPlayback(),_clappr.Events.PLAYBACK_BITRATE);};LevelSelector.prototype.bindPlaybackEvents=function bindPlaybackEvents(){var currentPlayback=this.core.getCurrentPlayback();this.listenTo(currentPlayback,_clappr.Events.PLAYBACK_LEVELS_AVAILABLE,this.fillLevels);this.listenTo(currentPlayback,_clappr.Events.PLAYBACK_LEVEL_SWITCH_START,this.startLevelSwitch);this.listenTo(currentPlayback,_clappr.Events.PLAYBACK_LEVEL_SWITCH_END,this.stopLevelSwitch);this.listenTo(currentPlayback,_clappr.Events.PLAYBACK_BITRATE,this.updateCurrentLevel);var playbackLevelsAvaialbeWasTriggered=currentPlayback.levels&&currentPlayback.levels.length>0;playbackLevelsAvaialbeWasTriggered&&this.fillLevels(currentPlayback.levels);};LevelSelector.prototype.reload=function reload(){this.unBindEvents();this.bindEvents();this.bindPlaybackEvents();};LevelSelector.prototype.shouldRender=function shouldRender(){if(!this.core.getCurrentContainer())return false;var currentPlayback=this.core.getCurrentPlayback();if(!currentPlayback)return false;var respondsToCurrentLevel=currentPlayback.currentLevel!==undefined;// Only care if we have at least 2 to choose from
-var hasLevels=!!(this.levels&&this.levels.length>1);return respondsToCurrentLevel&&hasLevels;};LevelSelector.prototype.render=function render(){if(this.shouldRender()){var style=_clappr.Styler.getStyleFor(_style2.default,{baseUrl:this.core.options.baseUrl});this.$el.html(this.template({'levels':this.levels,'title':this.getTitle()}));this.$el.append(style);this.core.mediaControl.$('.media-control-right-panel').append(this.el);this.highlightCurrentLevel();}return this;};LevelSelector.prototype.fillLevels=function fillLevels(levels){var initialLevel=arguments.length>1&&arguments[1]!==undefined?arguments[1]:AUTO;if(this.selectedLevelId===undefined)this.selectedLevelId=initialLevel;this.levels=levels;this.configureLevelsLabels();this.render();};LevelSelector.prototype.configureLevelsLabels=function configureLevelsLabels(){if(this.core.options.levelSelectorConfig===undefined)return;var labelCallback=this.core.options.levelSelectorConfig.labelCallback;if(labelCallback&&typeof labelCallback!=='function')throw new TypeError('labelCallback must be a function');var hasLabels=this.core.options.levelSelectorConfig.labels;var labels=hasLabels?this.core.options.levelSelectorConfig.labels:{};if(labelCallback||hasLabels){var level=void 0;var label=void 0;for(var levelId in this.levels){level=this.levels[levelId];label=labels[level.id];if(labelCallback)level.label=labelCallback(level,label);else if(label)level.label=label;}}};LevelSelector.prototype.findLevelBy=function findLevelBy(id){var foundLevel=void 0;this.levels.forEach(function(level){if(level.id===id)foundLevel=level;});return foundLevel;};LevelSelector.prototype.onLevelSelect=function onLevelSelect(event){this.selectedLevelId=parseInt(event.target.dataset.levelSelectorSelect,10);if(this.core.getCurrentPlayback().currentLevel==this.selectedLevelId)return false;this.core.getCurrentPlayback().currentLevel=this.selectedLevelId;this.toggleContextMenu();event.stopPropagation();return false;};LevelSelector.prototype.onShowLevelSelectMenu=function onShowLevelSelectMenu(){this.toggleContextMenu();};LevelSelector.prototype.hideSelectLevelMenu=function hideSelectLevelMenu(){this.$('.level_selector ul').hide();};LevelSelector.prototype.toggleContextMenu=function toggleContextMenu(){this.$('.level_selector ul').toggle();};LevelSelector.prototype.buttonElement=function buttonElement(){return this.$('.level_selector button');};LevelSelector.prototype.levelElement=function levelElement(id){return this.$('.level_selector ul a'+(!isNaN(id)?'[data-level-selector-select="'+id+'"]':'')).parent();};LevelSelector.prototype.getTitle=function getTitle(){return(this.core.options.levelSelectorConfig||{}).title;};LevelSelector.prototype.startLevelSwitch=function startLevelSwitch(){this.buttonElement().addClass('changing');};LevelSelector.prototype.stopLevelSwitch=function stopLevelSwitch(){this.buttonElement().removeClass('changing');};LevelSelector.prototype.updateText=function updateText(level){if(level===AUTO)this.buttonElement().text(this.currentLevel?'AUTO ('+this.currentLevel.label+')':'AUTO');else this.buttonElement().text(this.findLevelBy(level).label);};LevelSelector.prototype.updateCurrentLevel=function updateCurrentLevel(info){var level=this.findLevelBy(info.level);this.currentLevel=level?level:null;this.highlightCurrentLevel();};LevelSelector.prototype.highlightCurrentLevel=function highlightCurrentLevel(){this.levelElement().removeClass('current');this.currentLevel&&this.levelElement(this.currentLevel.id).addClass('current');this.updateText(this.selectedLevelId);};(0,_createClass3.default)(LevelSelector,[{key:'name',get:function get(){return'level_selector';}},{key:'template',get:function get(){return(0,_clappr.template)(_levelSelector2.default);}},{key:'attributes',get:function get(){return{'class':this.name,'data-level-selector':''};}},{key:'events',get:function get(){return{'click [data-level-selector-select]':'onLevelSelect','click [data-level-selector-button]':'onShowLevelSelectMenu'};}}],[{key:'version',get:function get(){return VERSION;}}]);return LevelSelector;}(_clappr.UICorePlugin);exports.default=LevelSelector;module.exports=exports['default'];
+var hasLevels=!!(this.levels&&this.levels.length>1);return respondsToCurrentLevel&&hasLevels;};LevelSelector.prototype.render=function render(){console.log(this.levels);if(this.shouldRender()){var style=_clappr.Styler.getStyleFor(_style2.default,{baseUrl:this.core.options.baseUrl});this.$el.html(this.template({'levels':this.levels,'title':this.getTitle()}));this.$el.append(style);this.core.mediaControl.$('.media-control-right-panel').append(this.el);this.highlightCurrentLevel();}return this;};LevelSelector.prototype.fillLevels=function fillLevels(levels){var initialLevel=arguments.length>1&&arguments[1]!==undefined?arguments[1]:AUTO;if(this.selectedLevelId===undefined)this.selectedLevelId=initialLevel;this.levels=levels;this.configureLevelsLabels();this.render();};LevelSelector.prototype.configureLevelsLabels=function configureLevelsLabels(){if(this.core.options.levelSelectorConfig===undefined)return;var labelCallback=this.core.options.levelSelectorConfig.labelCallback;if(labelCallback&&typeof labelCallback!=='function')throw new TypeError('labelCallback must be a function');var hasLabels=this.core.options.levelSelectorConfig.labels;var labels=hasLabels?this.core.options.levelSelectorConfig.labels:{};if(labelCallback||hasLabels){var level=void 0;var label=void 0;for(var levelId in this.levels){level=this.levels[levelId];label=labels[level.id];if(labelCallback)level.label=labelCallback(level,label);else if(label)level.label=label;}}};LevelSelector.prototype.findLevelBy=function findLevelBy(id){var foundLevel=void 0;this.levels.forEach(function(level){if(level.id===id)foundLevel=level;});return foundLevel;};LevelSelector.prototype.onLevelSelect=function onLevelSelect(event){this.selectedLevelId=parseInt(event.target.dataset.levelSelectorSelect,10);if(this.core.getCurrentPlayback().currentLevel==this.selectedLevelId)return false;this.core.getCurrentPlayback().currentLevel=this.selectedLevelId;this.toggleContextMenu();event.stopPropagation();return false;};LevelSelector.prototype.onShowLevelSelectMenu=function onShowLevelSelectMenu(){this.toggleContextMenu();};LevelSelector.prototype.hideSelectLevelMenu=function hideSelectLevelMenu(){this.$('.level_selector ul').hide();};LevelSelector.prototype.toggleContextMenu=function toggleContextMenu(){this.$('.level_selector ul').toggle();};LevelSelector.prototype.buttonElement=function buttonElement(){return this.$('.level_selector button');};LevelSelector.prototype.levelElement=function levelElement(id){return this.$('.level_selector ul a'+(!isNaN(id)?'[data-level-selector-select="'+id+'"]':'')).parent();};LevelSelector.prototype.getTitle=function getTitle(){return(this.core.options.levelSelectorConfig||{}).title;};LevelSelector.prototype.startLevelSwitch=function startLevelSwitch(){this.buttonElement().addClass('changing');};LevelSelector.prototype.stopLevelSwitch=function stopLevelSwitch(){this.buttonElement().removeClass('changing');};LevelSelector.prototype.updateText=function updateText(level){if(level===AUTO)this.buttonElement().text(this.currentLevel?'AUTO ('+this.currentLevel.label+')':'AUTO');else this.buttonElement().text(this.findLevelBy(level).label);};LevelSelector.prototype.updateCurrentLevel=function updateCurrentLevel(info){var level=this.findLevelBy(info.level);this.currentLevel=level?level:null;this.highlightCurrentLevel();};LevelSelector.prototype.highlightCurrentLevel=function highlightCurrentLevel(){this.levelElement().removeClass('current');this.currentLevel&&this.levelElement(this.currentLevel.id).addClass('current');this.updateText(this.selectedLevelId);};(0,_createClass3.default)(LevelSelector,[{key:'name',get:function get(){return'level_selector';}},{key:'template',get:function get(){return(0,_clappr.template)(_levelSelector2.default);}},{key:'attributes',get:function get(){return{'class':this.name,'data-level-selector':''};}},{key:'events',get:function get(){return{'click [data-level-selector-select]':'onLevelSelect','click [data-level-selector-button]':'onShowLevelSelectMenu'};}}],[{key:'version',get:function get(){return VERSION;}}]);return LevelSelector;}(_clappr.UICorePlugin);exports.default=LevelSelector;module.exports=exports['default'];
 
 /***/ }),
 /* 41 */
@@ -849,7 +808,7 @@ module.exports = { "default": __webpack_require__(44), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(45);
-var $Object = __webpack_require__(4).Object;
+var $Object = __webpack_require__(1).Object;
 module.exports = function defineProperty(it, key, desc) {
   return $Object.defineProperty(it, key, desc);
 };
@@ -861,7 +820,7 @@ module.exports = function defineProperty(it, key, desc) {
 
 var $export = __webpack_require__(9);
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(2), 'Object', { defineProperty: __webpack_require__(1).f });
+$export($export.S + $export.F * !__webpack_require__(3), 'Object', { defineProperty: __webpack_require__(2).f });
 
 
 /***/ }),
@@ -940,8 +899,8 @@ __webpack_require__(32)(String, 'String', function (iterated) {
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(15);
-var defined = __webpack_require__(16);
+var toInteger = __webpack_require__(16);
+var defined = __webpack_require__(17);
 // true  -> String#at
 // false -> String#codePointAt
 module.exports = function (TO_STRING) {
@@ -983,11 +942,11 @@ module.exports = function (Constructor, NAME, next) {
 /* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP = __webpack_require__(1);
+var dP = __webpack_require__(2);
 var anObject = __webpack_require__(10);
 var getKeys = __webpack_require__(20);
 
-module.exports = __webpack_require__(2) ? Object.defineProperties : function defineProperties(O, Properties) {
+module.exports = __webpack_require__(3) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
   var keys = getKeys(Properties);
   var length = keys.length;
@@ -1044,7 +1003,7 @@ module.exports = function (IS_INCLUDES) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
-var toInteger = __webpack_require__(15);
+var toInteger = __webpack_require__(16);
 var min = Math.min;
 module.exports = function (it) {
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
@@ -1055,7 +1014,7 @@ module.exports = function (it) {
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(15);
+var toInteger = __webpack_require__(16);
 var max = Math.max;
 var min = Math.min;
 module.exports = function (index, length) {
@@ -1077,7 +1036,7 @@ module.exports = document && document.documentElement;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has = __webpack_require__(3);
+var has = __webpack_require__(4);
 var toObject = __webpack_require__(60);
 var IE_PROTO = __webpack_require__(21)('IE_PROTO');
 var ObjectProto = Object.prototype;
@@ -1096,7 +1055,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(16);
+var defined = __webpack_require__(17);
 module.exports = function (it) {
   return Object(defined(it));
 };
@@ -1198,7 +1157,7 @@ __webpack_require__(67);
 __webpack_require__(72);
 __webpack_require__(73);
 __webpack_require__(74);
-module.exports = __webpack_require__(4).Symbol;
+module.exports = __webpack_require__(1).Symbol;
 
 
 /***/ }),
@@ -1209,15 +1168,15 @@ module.exports = __webpack_require__(4).Symbol;
 
 // ECMAScript 6 symbols shim
 var global = __webpack_require__(0);
-var has = __webpack_require__(3);
-var DESCRIPTORS = __webpack_require__(2);
+var has = __webpack_require__(4);
+var DESCRIPTORS = __webpack_require__(3);
 var $export = __webpack_require__(9);
 var redefine = __webpack_require__(33);
 var META = __webpack_require__(68).KEY;
 var $fails = __webpack_require__(11);
 var shared = __webpack_require__(22);
 var setToStringTag = __webpack_require__(24);
-var uid = __webpack_require__(13);
+var uid = __webpack_require__(14);
 var wks = __webpack_require__(8);
 var wksExt = __webpack_require__(25);
 var wksDefine = __webpack_require__(26);
@@ -1226,12 +1185,12 @@ var isArray = __webpack_require__(70);
 var anObject = __webpack_require__(10);
 var isObject = __webpack_require__(6);
 var toIObject = __webpack_require__(7);
-var toPrimitive = __webpack_require__(14);
+var toPrimitive = __webpack_require__(15);
 var createDesc = __webpack_require__(12);
 var _create = __webpack_require__(19);
 var gOPNExt = __webpack_require__(71);
 var $GOPD = __webpack_require__(38);
-var $DP = __webpack_require__(1);
+var $DP = __webpack_require__(2);
 var $keys = __webpack_require__(20);
 var gOPD = $GOPD.f;
 var dP = $DP.f;
@@ -1359,7 +1318,7 @@ if (!USE_NATIVE) {
   __webpack_require__(27).f = $propertyIsEnumerable;
   __webpack_require__(36).f = $getOwnPropertySymbols;
 
-  if (DESCRIPTORS && !__webpack_require__(17)) {
+  if (DESCRIPTORS && !__webpack_require__(13)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
@@ -1446,10 +1405,10 @@ setToStringTag(global.JSON, 'JSON', true);
 /* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var META = __webpack_require__(13)('meta');
+var META = __webpack_require__(14)('meta');
 var isObject = __webpack_require__(6);
-var has = __webpack_require__(3);
-var setDesc = __webpack_require__(1).f;
+var has = __webpack_require__(4);
+var setDesc = __webpack_require__(2).f;
 var id = 0;
 var isExtensible = Object.isExtensible || function () {
   return true;
@@ -1628,7 +1587,7 @@ module.exports = { "default": __webpack_require__(77), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(78);
-module.exports = __webpack_require__(4).Object.setPrototypeOf;
+module.exports = __webpack_require__(1).Object.setPrototypeOf;
 
 
 /***/ }),
@@ -1682,7 +1641,7 @@ module.exports = { "default": __webpack_require__(81), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(82);
-var $Object = __webpack_require__(4).Object;
+var $Object = __webpack_require__(1).Object;
 module.exports = function create(P, D) {
   return $Object.create(P, D);
 };
@@ -1707,7 +1666,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_83__;
 /* 84 */
 /***/ (function(module, exports) {
 
-module.exports = "<button data-level-selector-button>\n  Auto\n</button>\n<ul>\n  <% if (title) { %>\n  <li data-title><%= title %></li>\n  <% }; %>\n  <li><a href=\"#\" data-level-selector-select=\"-1\">AUTO</a></li>\n  <% for (var i = 0; i < levels.length; i++) { %>\n    <li><a href=\"#\" data-level-selector-select=\"<%= levels[i].id %>\"><%= levels[i].label %></a></li>\n  <% }; %>\n</ul>\n";
+module.exports = "<button id=\"buttonSelector\" data-level-selector-button>\n  Auto\n</button>\n<ul id=\"parSelector\">\n  <li><a href=\"#\" data-level-selector-select=\"-1\">AUTO</a></li>\n  <% for (var i = 0; i < levels.length; i++) { %>\n    <li><a href=\"#\" data-level-selector-select=\"<%= levels[i].id %>\"><%= levels[i].label %></a></li>\n  <% }; %>\n</ul>\n";
 
 /***/ }),
 /* 85 */
@@ -1725,8 +1684,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/postcss-loader/lib/index.js!../../node_modules/sass-loader/lib/loader.js?includePaths[]=/Users/bruno/workspace/player/clappr/clappr-level-selector-plugin/node_modules/compass-mixins/lib&includePaths[]=/Users/bruno/workspace/player/clappr/clappr-level-selector-plugin/node_modules/clappr/src/base/scss&includePaths[]=/Users/bruno/workspace/player/clappr/clappr-level-selector-plugin/src/base/scss!./style.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/postcss-loader/lib/index.js!../../node_modules/sass-loader/lib/loader.js?includePaths[]=/Users/bruno/workspace/player/clappr/clappr-level-selector-plugin/node_modules/compass-mixins/lib&includePaths[]=/Users/bruno/workspace/player/clappr/clappr-level-selector-plugin/node_modules/clappr/src/base/scss&includePaths[]=/Users/bruno/workspace/player/clappr/clappr-level-selector-plugin/src/base/scss!./style.scss");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/postcss-loader/lib/index.js!../../node_modules/sass-loader/lib/loader.js?includePaths[]=/Users/emil/Projects/Betastream/player/src/clappr/clappr-level-selector-plugin/node_modules/compass-mixins/lib&includePaths[]=/Users/emil/Projects/Betastream/player/src/clappr/clappr-level-selector-plugin/node_modules/clappr/src/base/scss&includePaths[]=/Users/emil/Projects/Betastream/player/src/clappr/clappr-level-selector-plugin/src/base/scss!./style.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/postcss-loader/lib/index.js!../../node_modules/sass-loader/lib/loader.js?includePaths[]=/Users/emil/Projects/Betastream/player/src/clappr/clappr-level-selector-plugin/node_modules/compass-mixins/lib&includePaths[]=/Users/emil/Projects/Betastream/player/src/clappr/clappr-level-selector-plugin/node_modules/clappr/src/base/scss&includePaths[]=/Users/emil/Projects/Betastream/player/src/clappr/clappr-level-selector-plugin/src/base/scss!./style.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -1744,7 +1703,7 @@ exports = module.exports = __webpack_require__(87)(false);
 
 
 // module
-exports.push([module.i, ".level_selector[data-level-selector] {\n  float: right;\n  position: relative;\n  height: 100%; }\n  .level_selector[data-level-selector] button {\n    background-color: transparent;\n    color: #fff;\n    font-family: Roboto,\"Open Sans\",Arial,sans-serif;\n    -webkit-font-smoothing: antialiased;\n    border: none;\n    font-size: 10px;\n    height: 100%; }\n    .level_selector[data-level-selector] button:hover {\n      color: #c9c9c9; }\n    .level_selector[data-level-selector] button.changing {\n      -webkit-animation: pulse 0.5s infinite alternate; }\n  .level_selector[data-level-selector] > ul {\n    list-style-type: none;\n    position: absolute;\n    bottom: 100%;\n    border: 1px solid black;\n    display: none;\n    background-color: #e6e6e6;\n    white-space: nowrap; }\n  .level_selector[data-level-selector] li {\n    font-size: 10px; }\n    .level_selector[data-level-selector] li[data-title] {\n      background-color: #c3c2c2;\n      padding: 5px; }\n    .level_selector[data-level-selector] li a {\n      color: #444;\n      padding: 2px 10px;\n      display: block;\n      text-decoration: none; }\n      .level_selector[data-level-selector] li a:hover {\n        background-color: #555;\n        color: white; }\n        .level_selector[data-level-selector] li a:hover a {\n          color: white;\n          text-decoration: none; }\n    .level_selector[data-level-selector] li.current a {\n      color: #f00; }\n", ""]);
+exports.push([module.i, ".level_selector[data-level-selector] {\n  float: right;\n  position: relative;\n  height: 100%; }\n  .level_selector[data-level-selector] button {\n    background-color: transparent;\n    color: #fff;\n    font-family: Roboto,\"Open Sans\",Arial,sans-serif;\n    -webkit-font-smoothing: antialiased;\n    border: none;\n    font-size: 12px;\n    font-weight: bold;\n    width: 110px;\n    cursor: pointer; }\n    .level_selector[data-level-selector] button:hover {\n      color: #c9c9c9; }\n    .level_selector[data-level-selector] button:focus {\n      outline: none; }\n    .level_selector[data-level-selector] button.changing {\n      -webkit-animation: pulse 0.5s infinite alternate; }\n  .level_selector[data-level-selector] > ul {\n    display: none;\n    list-style-type: none;\n    position: absolute;\n    bottom: 100%;\n    border: 1px solid black;\n    border-radius: 4px;\n    background-color: rgba(0, 0, 0, 0.7);\n    width: 110px; }\n  .level_selector[data-level-selector] li {\n    position: relative;\n    font-size: 12px; }\n    .level_selector[data-level-selector] li[data-title] {\n      padding: 5px; }\n    .level_selector[data-level-selector] li a {\n      color: #aaa;\n      padding: 5px 10px 5px 15px;\n      display: block;\n      text-decoration: none; }\n      .level_selector[data-level-selector] li a:hover {\n        color: #fff;\n        text-decoration: none; }\n    .level_selector[data-level-selector] li.current a {\n      background-color: black;\n      font-weight: bold;\n      color: #fff; }\n      .level_selector[data-level-selector] li.current a:before {\n        content: '\\2713';\n        position: absolute;\n        top: 2px;\n        left: 4px; }\n\n.media-control[data-media-control] .media-control-layer[data-controls] button.media-control-button[data-hd-indicator].enabled {\n  display: none !important; }\n", ""]);
 
 // exports
 
